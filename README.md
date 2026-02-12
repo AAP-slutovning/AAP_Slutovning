@@ -11,3 +11,21 @@
 ### Vid mån av tid:
 5. Som användare vill jag kunna markera en uppgift som klar för att veta vad jag är färdig med.
 6. Som användare vill jag kunna filtrera på klara/oklara uppgifter för att fokusera på rätt saker.
+
+
+### Presentation
+1. Vad var ert sprintmål?
+- "Fungerande meny där man kan lägga till, ta bort och se uppgifter"
+
+2. Vad hann ni leverera (Done)?
+- Planen var 4 userstories (1 var) men vi hann med alla 8 user stories.
+
+3. Vad fungerade bra i Scrum-arbetet?
+- Uppdelning av arbetsuppgifter, daily scrum, task för tydlighet och acceptanskriterier för att inte spåna iväg.
+
+4. Vad var svårast?
+- Mergea till main...
+
+5. En sak ni skulle förbättra nästa sprint.
+- Mer pauser.
+
