@@ -24,6 +24,9 @@
                         break;
                     case "3":
                         // TODO: Markera som klar
+                        Console.Write("Ange ID på uppgiften som är klar: ");
+                        int.TryParse(Console.ReadLine(), out int taskDone);
+                        manager.CompleteTask(taskDone);
                         break;
                     case "4":
                         Console.WriteLine("Ange id för att ta bort uppgift:");
@@ -81,18 +84,29 @@
             tasks.Add(newTask);
 
             Console.WriteLine($"{title} har lagts till med ID:{nextId}");
-
-            nextId++;
         }
-
         public void DisplayAllTasks()
         {
-            // TODO: Implementera logik för att visa alla uppgifter
+            //Skapa metod DisplayAllTasks() i TaskManager
+            Console.Clear();
+            Console.WriteLine("--- VISA ALLA UPPGIFTER ---");
+
+            nextId++;
         }
 
         public void CompleteTask(int id)
         {
             // TODO: Implementera logik för att markera som klar
+            TodoTask task = tasks.FirstOrDefault(t => t.Id == id);
+
+            if (task == null)
+            {
+                Console.WriteLine("Ingen uppgift med ID't hittades");
+                return;
+            }
+
+            task.IsCompleted = true;
+            Console.WriteLine($"Uppgift {id} är markerad som klar.");
         }
 
         public void DeleteTask(int id)
