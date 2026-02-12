@@ -15,13 +15,14 @@
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine("Skriv in titeln för ny uppgift:");
-                        string titleInput = Console.ReadLine();
-                        manager.AddTask(titleInput);
+                        
+                        manager.AddTask();
+                        manager.menuReturn();
                         break;
                     case "2":
                         //Skapa menyval för "Visa alla uppgifter"
                         manager.DisplayAllTasks();
+                        manager.menuReturn();
                         break;
                     case "3":
                         // TODO: Markera som klar
@@ -41,6 +42,23 @@
                         }
                         break;
                     case "5":
+                        manager.DisplayAllTasks();
+
+                        Console.WriteLine("Ange ID för den uppgift du vill redigera: ");
+                        string editIdInput = Console.ReadLine();
+                        
+                        if (int.TryParse(editIdInput, out int editId))
+                        {
+                            manager.EditTask(editId);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt id!");
+                        }
+
+                        manager.menuReturn();
+                        break;
+                    case "6":
                         running = false;
                         Console.WriteLine("Hej då!");
                         break;
@@ -57,7 +75,8 @@
                 Console.WriteLine("2. Visa alla uppgifter");
                 Console.WriteLine("3. Markera uppgift som klar");
                 Console.WriteLine("4. Ta bort uppgift");
-                Console.WriteLine("5. Avsluta");
+                Console.WriteLine("5. Redigera uppgift");
+                Console.WriteLine("6. Avsluta");
                 Console.Write("Välj ett alternativ: ");
             }
         }
@@ -93,8 +112,12 @@
             nextId = 1;
         }
 
-        public void AddTask(string title)
+        public void AddTask()
         {
+            Console.Clear();
+            Console.WriteLine("Skriv in titeln för ny uppgift:");
+            string title = Console.ReadLine();
+
             if (string.IsNullOrWhiteSpace(title))
             {
                 Console.WriteLine("Uppgiftens titel kan inte vara tom!");
@@ -108,7 +131,6 @@
             nextId++;
         }
 
-        //Skapa metod DisplayAllTasks() i TaskManager
         public void DisplayAllTasks()
         {
             Console.Clear();
@@ -128,9 +150,7 @@
                     Console.WriteLine(toDo);
                 }
             }
-            Console.WriteLine("\nTryck på valfri knapp för att återgå till huvudmenyn...");
-            Console.ReadKey(true);
-            Console.Clear();
+
         }
 
         public void CompleteTask(int id)
@@ -170,9 +190,38 @@
             }
         }
 
+        public void EditTask(int id)
+        {
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                Console.WriteLine($"Ogiltigt id");
+                return;
+            }
+
+            Console.WriteLine($"Nuvarande titel: {task.Title}");
+            Console.WriteLine("Ange ny titel: ");
+            string newTitleInput = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(newTitleInput))
+            {
+                Console.WriteLine("Avbryter ändringen, titeln får ej vara tom!");
+                return;
+            }
+
+            task.Title = newTitleInput;
+            Console.WriteLine($"Titeln har uppdaterats till {task.Title}");
+        }
+
+        public void menuReturn()
+        {
+            Console.WriteLine("\nTryck på valfri knapp för att återgå till huvudmenyn...");
+            Console.ReadKey(true);
+            Console.Clear();
+        }
     }
 
 }
 
 
-    
+
