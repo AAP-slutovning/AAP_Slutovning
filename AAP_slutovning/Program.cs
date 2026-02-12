@@ -20,7 +20,8 @@
                         manager.AddTask(titleInput);
                         break;
                     case "2":
-                        // TODO: Visa alla uppgifter
+                        //Skapa menyval för "Visa alla uppgifter"
+                        manager.DisplayAllTasks();
                         break;
                     case "3":
                         // TODO: Markera som klar
@@ -61,6 +62,26 @@
             }
         }
     }
+    public class TodoTask
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool IsCompleted { get; set; }
+
+        public TodoTask(int id, string title)
+        {
+            Id = id;
+            Title = title;
+            IsCompleted = false;
+        }
+
+        public override string ToString()
+        {
+            string status = IsCompleted ? "[X]" : "[ ]";
+            return $"{status} {Id}. {Title}";
+        }
+    }
+
     public class TaskManager
     {
         private List<TodoTask> tasks;
@@ -79,19 +100,35 @@
                 Console.WriteLine("Uppgiftens titel kan inte vara tom!");
                 return;
             }
-
             TodoTask newTask = new TodoTask(nextId, title);
             tasks.Add(newTask);
 
             Console.WriteLine($"{title} har lagts till med ID:{nextId}");
         }
+
+        //Skapa metod DisplayAllTasks() i TaskManager
         public void DisplayAllTasks()
         {
-            //Skapa metod DisplayAllTasks() i TaskManager
             Console.Clear();
             Console.WriteLine("--- VISA ALLA UPPGIFTER ---");
 
-            nextId++;
+            //Hantera tomt fall (inga uppgifter)
+            if (tasks.Count < 1)
+            {
+                Console.WriteLine("Finns inga produkter att visa.");
+            }
+            else
+            {
+                // TODO: Implementera logik för att visa alla uppgifter
+                foreach (var toDo in tasks)
+                {
+                    //Formatera utskrift med numrering och status
+                    Console.WriteLine(toDo);
+                }
+            }
+            Console.WriteLine("\nTryck på valfri knapp för att återgå till huvudmenyn...");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
         public void CompleteTask(int id)
@@ -133,23 +170,7 @@
 
     }
 
-    public class TodoTask
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public bool IsCompleted { get; set; }
-
-        public TodoTask(int id, string title)
-        {
-            Id = id;
-            Title = title;
-            IsCompleted = false;
-        }
-
-        public override string ToString()
-        {
-            string status = IsCompleted ? "[X]" : "[ ]";
-            return $"{status} {Id}. {Title}";
-        }
-    }
 }
+
+
+    
