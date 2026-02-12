@@ -73,6 +73,11 @@
             tasks.Add(newTask);
 
             Console.WriteLine($"{title} har lagts till med ID:{nextId}");
+        public void DisplayAllTasks()
+        {
+            //Skapa metod DisplayAllTasks() i TaskManager
+            Console.Clear();
+            Console.WriteLine("--- VISA ALLA UPPGIFTER ---");
 
             nextId++;
         }
