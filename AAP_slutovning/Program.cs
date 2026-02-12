@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+
             TaskManager manager = new TaskManager();
             bool running = true;
 
@@ -18,7 +19,8 @@
                         // TODO: Lägg till uppgift
                         break;
                     case "2":
-                        // TODO: Visa alla uppgifter
+                        //Skapa menyval för "Visa alla uppgifter"
+                        manager.DisplayAllTasks();
                         break;
                     case "3":
                         // TODO: Markera som klar
@@ -47,7 +49,7 @@
             Console.Write("Välj ett alternativ: ");
         }
     }
-
+    
     public class TodoTask
     {
         public int Id { get; set; }
@@ -59,6 +61,7 @@
             Id = id;
             Title = title;
             IsCompleted = false;
+
         }
 
         public override string ToString()
@@ -71,8 +74,10 @@
 
     public class TaskManager
     {
+        
         private List<TodoTask> tasks;
         private int nextId;
+        
 
         public TaskManager()
         {
@@ -85,9 +90,29 @@
             // TODO: Implementera logik för att lägga till uppgift
         }
 
+        //Skapa metod DisplayAllTasks() i TaskManager
         public void DisplayAllTasks()
         {
-            // TODO: Implementera logik för att visa alla uppgifter
+            Console.Clear();
+            Console.WriteLine("--- VISA ALLA UPPGIFTER ---");
+
+            //Hantera tomt fall (inga uppgifter)
+            if (tasks.Count < 1)
+            {
+                Console.WriteLine("Finns inga produkter att visa.");
+            }
+            else
+            {
+                // TODO: Implementera logik för att visa alla uppgifter
+                foreach (var toDo in tasks)
+                {
+                    //Formatera utskrift med numrering och status
+                    Console.WriteLine(toDo);
+                }
+            }
+            Console.WriteLine("\nTryck på valfri knapp för att återgå till huvudmenyn...");
+            Console.ReadKey(true);
+            Console.Clear();
         }
 
         public void CompleteTask(int id)
