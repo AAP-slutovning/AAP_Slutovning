@@ -104,6 +104,8 @@
             tasks.Add(newTask);
 
             Console.WriteLine($"{title} har lagts till med ID:{nextId}");
+
+            nextId++;
         }
 
         //Skapa metod DisplayAllTasks() i TaskManager
