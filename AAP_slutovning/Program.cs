@@ -15,7 +15,9 @@
                 switch (choice)
                 {
                     case "1":
-                        // TODO: Lägg till uppgift
+                        Console.WriteLine("Skriv in titeln för ny uppgift:");
+                        string titleInput = Console.ReadLine();
+                        manager.AddTask(titleInput);
                         break;
                     case "2":
                         // TODO: Visa alla uppgifter
@@ -61,7 +63,18 @@
 
         public void AddTask(string title)
         {
-            // TODO: Implementera logik för att lägga till uppgift
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                Console.WriteLine("Uppgiftens titel kan inte vara tom!");
+                return;
+            }
+
+            TodoTask newTask = new TodoTask(nextId, title);
+            tasks.Add(newTask);
+
+            Console.WriteLine($"{title} har lagts till med ID:{nextId}");
+
+            nextId++;
         }
 
         public void DisplayAllTasks()
