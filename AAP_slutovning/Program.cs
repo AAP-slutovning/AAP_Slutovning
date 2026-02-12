@@ -24,6 +24,9 @@
                         break;
                     case "3":
                         // TODO: Markera som klar
+                        Console.Write("Ange ID på uppgiften som är klar: ");
+                        int.TryParse(Console.ReadLine(), out int taskDone);
+                        manager.CompleteTask(taskDone);
                         break;
                     case "4":
                         // TODO: Ta bort uppgift
