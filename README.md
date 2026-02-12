@@ -29,3 +29,7 @@
 5. En sak ni skulle förbättra nästa sprint.
 - Mer pauser.
 
+
+2 saker vi tar med oss från Retrospective 
+Ta fler raster.
+Mer fika.
