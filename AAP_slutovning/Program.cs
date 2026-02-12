@@ -73,6 +73,7 @@
             tasks.Add(newTask);
 
             Console.WriteLine($"{title} har lagts till med ID:{nextId}");
+        }
         public void DisplayAllTasks()
         {
             //Skapa metod DisplayAllTasks() i TaskManager
@@ -80,11 +81,6 @@
             Console.WriteLine("--- VISA ALLA UPPGIFTER ---");
 
             nextId++;
-        }
-
-        public void DisplayAllTasks()
-        {
-            // TODO: Implementera logik för att visa alla uppgifter
         }
 
         public void CompleteTask(int id)
