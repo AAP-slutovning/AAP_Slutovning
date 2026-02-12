@@ -86,6 +86,16 @@
         public void CompleteTask(int id)
         {
             // TODO: Implementera logik för att markera som klar
+            TodoTask task = tasks.FirstOrDefault(t => t.Id == id);
+
+            if (task == null)
+            {
+                Console.WriteLine("Ingen uppgift med ID't hittades");
+                return;
+            }
+
+            task.IsCompleted = true;
+            Console.WriteLine($"Uppgift {id} är markerad som klar.");
         }
 
         public void DeleteTask(int id)
