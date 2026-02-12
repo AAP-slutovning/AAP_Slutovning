@@ -11,6 +11,8 @@
 
 /*
 
+///////////////////////////////////////////////
+
 public class TodoTask
 {
     public int Id { get; set; }
@@ -31,7 +33,7 @@ public class TodoTask
     }
 }
 
-
+////////////////////////////////////////////
 
 
 public class TaskManager
@@ -66,7 +68,7 @@ public class TaskManager
     }
 }
 
-
+//////////////////////////////////////////////
 
 
 class Program
