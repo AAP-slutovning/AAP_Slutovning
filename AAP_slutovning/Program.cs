@@ -47,7 +47,7 @@ namespace AAP_slutovning
                             Console.WriteLine("Ogiltigt id!");
                         }
                         break;
-                    case "5":
+                    case "6":
                         manager.DisplayAllTasks();
 
                         Console.WriteLine("Ange ID för den uppgift du vill redigera: ");
@@ -64,7 +64,7 @@ namespace AAP_slutovning
 
                         manager.menuReturn();
                         break;
-                    case "6":
+                    case "7":
                         manager.SaveToFile();
                        
                         running = false;
@@ -84,11 +84,8 @@ namespace AAP_slutovning
                 Console.WriteLine("3. Filtrera uppgifter");
                 Console.WriteLine("4. Markera uppgift som klar");
                 Console.WriteLine("5. Ta bort uppgift");
-                Console.WriteLine("6. Avsluta");
-                Console.WriteLine("3. Markera uppgift som klar");
-                Console.WriteLine("4. Ta bort uppgift");
-                Console.WriteLine("5. Redigera uppgift");
-                Console.WriteLine("6. Avsluta");
+                Console.WriteLine("6. Redigera uppgift");
+                Console.WriteLine("7. Avsluta");
                 Console.Write("Välj ett alternativ: ");
             }
         }
