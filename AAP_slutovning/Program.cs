@@ -9,9 +9,9 @@
     }
 }
 
-/*
 
-///////////////////////////////////////////////
+
+///////////////////////////////////////
 
 public class TodoTask
 {
@@ -33,7 +33,7 @@ public class TodoTask
     }
 }
 
-////////////////////////////////////////////
+////////////////////////////////////
 
 
 public class TaskManager
@@ -49,75 +49,84 @@ public class TaskManager
 
     public void AddTask(string title)
     {
-        // TODO: Implementera logik för att lägga till uppgift
+    //TODO: Implementera logik för att lägga till uppgift
     }
 
     public void DisplayAllTasks()
     {
-        // TODO: Implementera logik för att visa alla uppgifter
+    //TODO: Implementera logik för att visa alla uppgifter
     }
 
     public void CompleteTask(int id)
     {
-        // TODO: Implementera logik för att markera som klar
+    //TODO: Implementera logik för att markera som klar
     }
-
+    
     public void DeleteTask(int id)
     {
-        // TODO: Implementera logik för att ta bort uppgift
-    }
-}
-
-//////////////////////////////////////////////
-
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        TaskManager manager = new TaskManager();
-        bool running = true;
-
-        while (running)
+        var task = task.FirstOrDefault(t => t.Id == id);
+        if (task != null)
         {
-            DisplayMenu();
-            string choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    // TODO: Lägg till uppgift
-                    break;
-                case "2":
-                    // TODO: Visa alla uppgifter
-                    break;
-                case "3":
-                    // TODO: Markera som klar
-                    break;
-                case "4":
-                    // TODO: Ta bort uppgift
-                    break;
-                case "5":
-                    running = false;
-                    Console.WriteLine("Hej då!");
-                    break;
-                default:
-                    Console.WriteLine("Ogiltigt val!");
-                    break;
-            }
+            Console.WriteLine($"Ogiltigt id");
+            return;
+        }
+        else
+        {
+            tasks.Remove(task);
+            Console.WriteLine($"Uppgift {id} har tagits bort.");
         }
     }
 
-    static void DisplayMenu()
-    {
-        Console.WriteLine("\n=== TO-DO LIST ===");
-        Console.WriteLine("1. Lägg till uppgift");
-        Console.WriteLine("2. Visa alla uppgifter");
-        Console.WriteLine("3. Markera uppgift som klar");
-        Console.WriteLine("4. Ta bort uppgift");
-        Console.WriteLine("5. Avsluta");
-        Console.Write("Välj ett alternativ: ");
-    }
-}
+    //////////////////////////////////////
 
-*/
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TaskManager manager = new TaskManager();
+            bool running = true;
+
+            while (running)
+            {
+                DisplayMenu();
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                    //TODO: Lägg till uppgift
+                        break;
+                    case "2":
+                    //TODO: Visa alla uppgifter
+                        break;
+                    case "3":
+                    //TODO: Markera som klar
+                        break;
+                    case "4": 
+                         
+                        break;
+                    case "5":
+                        running = false;
+                        Console.WriteLine("Hej då!");
+                        break;
+                    default:
+                        Console.WriteLine("Ogiltigt val!");
+                        break;
+                }
+            }
+        }
+
+        static void DisplayMenu()
+        {
+            Console.WriteLine("\n=== TO-DO LIST ===");
+            Console.WriteLine("1. Lägg till uppgift");
+            Console.WriteLine("2. Visa alla uppgifter");
+            Console.WriteLine("3. Markera uppgift som klar");
+            Console.WriteLine("4. Ta bort uppgift");
+            Console.WriteLine("5. Avsluta");
+            Console.Write("Välj ett alternativ: ");
+        }
+    } }
+
+
