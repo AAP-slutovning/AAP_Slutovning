@@ -26,7 +26,15 @@
                         // TODO: Markera som klar
                         break;
                     case "4":
-                        // TODO: Ta bort uppgift
+                        Console.WriteLine("Ange id för att ta bort uppgift:");
+                        if (int.TryParse(Console.ReadLine(), out int deleteId))
+                        {
+                            manager.DeleteTask(deleteId);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt id!");
+                        }
                         break;
                     case "5":
                         running = false;
@@ -89,8 +97,19 @@
 
         public void DeleteTask(int id)
         {
-            // TODO: Implementera logik för att ta bort uppgift
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                Console.WriteLine($"Ogiltigt id");
+                return;
+            }
+            else
+            {
+                tasks.Remove(task);
+                Console.WriteLine($"Uppgift {id} har tagits bort.");
+            }
         }
+
     }
 
     public class TodoTask
