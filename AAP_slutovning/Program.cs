@@ -54,6 +54,26 @@
             }
         }
     }
+    public class TodoTask
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool IsCompleted { get; set; }
+
+        public TodoTask(int id, string title)
+        {
+            Id = id;
+            Title = title;
+            IsCompleted = false;
+        }
+
+        public override string ToString()
+        {
+            string status = IsCompleted ? "[X]" : "[ ]";
+            return $"{status} {Id}. {Title}";
+        }
+    }
+
     public class TaskManager
     {
         private List<TodoTask> tasks;
