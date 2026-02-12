@@ -1,0 +1,39 @@
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+## Visual Studio Cache & Settings
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## NuGet Packages
+*.nupkg
+# Mappen 'packages' används ofta i äldre projekt (non-SDK style)
+packages/
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## OS generated files
+.DS_Store
+Thumbs.db
+
+## Environment variables (Viktigt för säkerhet!)
+.env
+.env.*
