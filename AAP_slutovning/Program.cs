@@ -1,10 +1,13 @@
-﻿namespace AAP_slutovning
+﻿using System.Text;
+
+namespace AAP_slutovning
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             TaskManager manager = new TaskManager();
+            manager.LoadFromFile();
             bool running = true;
 
             while (running)
@@ -41,6 +44,7 @@
                         }
                         break;
                     case "5":
+                        manager.SaveToFile();
                         running = false;
                         Console.WriteLine("Hej då!");
                         break;
@@ -169,10 +173,66 @@
                 Console.WriteLine($"Uppgift {id} har tagits bort.");
             }
         }
+        public void SaveToFile()
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var task in tasks)
+                {
+                    sb.AppendLine($"{task.Id}|{task.Title}|{task.IsCompleted}");
+                }
+                File.WriteAllText("tasks.txt", sb.ToString());
+                Console.WriteLine("uppgifter sparade till fil");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fel vid sparning: {ex.Message}");
+            }
 
-    }
 
-}
+
+
+
+        }
+
+        public void LoadFromFile()
+        {
+            try
+            {
+                tasks.Clear(); 
+
+                string content = File.ReadAllText("tasks.txt");
+                string[] lines = content.Split(Environment.NewLine);
+
+                foreach (var line in lines)
+                {
+                    if (string.IsNullOrWhiteSpace(line)) continue;
+
+                    string[] parts = line.Split('|');
+                    if (parts.Length == 3 &&
+                        int.TryParse(parts[0], out int id) &&
+                        bool.TryParse(parts[2], out bool isCompleted))
+                    {
+                        TodoTask task = new TodoTask(id, parts[1]) { IsCompleted = isCompleted };
+                        tasks.Add(task);
+                        nextId = Math.Max(nextId, id + 1);
+                    }
+                }
+
+                Console.WriteLine("Uppgifter laddade från fil.");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Ingen sparad fil hittades. Börjar med tom lista.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fel vid inläsning: {ex.Message}");
+            }
+        }
+
+    } }
 
 
     
