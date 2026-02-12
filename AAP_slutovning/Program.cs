@@ -24,12 +24,15 @@
                         manager.DisplayAllTasks();
                         break;
                     case "3":
+                        manager.DisplayTasksByStatus();
+                        break;
+                    case "4":
                         // TODO: Markera som klar
                         Console.Write("Ange ID på uppgiften som är klar: ");
                         int.TryParse(Console.ReadLine(), out int taskDone);
                         manager.CompleteTask(taskDone);
                         break;
-                    case "4":
+                    case "5":
                         Console.WriteLine("Ange id för att ta bort uppgift:");
                         if (int.TryParse(Console.ReadLine(), out int deleteId))
                         {
@@ -40,7 +43,7 @@
                             Console.WriteLine("Ogiltigt id!");
                         }
                         break;
-                    case "5":
+                    case "6":
                         running = false;
                         Console.WriteLine("Hej då!");
                         break;
@@ -55,9 +58,10 @@
                 Console.WriteLine("\n=== TO-DO LIST ===");
                 Console.WriteLine("1. Lägg till uppgift");
                 Console.WriteLine("2. Visa alla uppgifter");
-                Console.WriteLine("3. Markera uppgift som klar");
-                Console.WriteLine("4. Ta bort uppgift");
-                Console.WriteLine("5. Avsluta");
+                Console.WriteLine("3. Filtrera uppgifter");
+                Console.WriteLine("4. Markera uppgift som klar");
+                Console.WriteLine("5. Ta bort uppgift");
+                Console.WriteLine("6. Avsluta");
                 Console.Write("Välj ett alternativ: ");
             }
         }
@@ -133,6 +137,89 @@
             Console.Clear();
         }
 
+        public void DisplayTasksByStatus()
+        {
+            string choice;
+            do
+            {
+                Console.WriteLine("--- FILTRERA UPPGIFTER ---\n");
+
+                Console.WriteLine("1. Visa klara.");
+                Console.WriteLine("2. Visa oklara.");
+                Console.WriteLine("3. Visa alla.");
+                Console.WriteLine("4. Gå tillbaka till huvudmenyn.");
+
+                choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        if (tasks.Count < 1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Finns inga uppgifter att visa.");
+                        }
+                        else
+                        {
+                            int counter = 0;
+                            foreach (var task in tasks)
+                            {
+
+                                if (task.IsCompleted == true)
+                                {
+                                    counter++;
+                                    Console.WriteLine(task);
+                                }
+                            }
+                            if (counter == 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Finns inga uppgifter som är klara.");
+                            }
+                        }
+                        break;
+                    case "2":
+                        if (tasks.Count < 1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Finns inga uppgifter att visa.");
+                        }
+                        else
+                        {
+                            int counter = 0;
+                            foreach (var task in tasks)
+                            {
+                                if (task.IsCompleted == false)
+                                {
+                                    counter++;
+                                    Console.WriteLine(task);
+                                }
+                            }
+                            if (counter == 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Finns inga uppgifter som är oklara.");
+                            }
+                        }
+                        break;
+                    case "3":
+                        DisplayAllTasks();
+                        break;
+                    case "4":
+                        Console.WriteLine("Tryck på valfri knapp för att återgå till huvudmenyn...");
+                        break;
+                    default:
+                        Console.WriteLine("Ogiltigt val.");
+                        break;
+
+                }
+
+
+            } while (choice != "4");
+            Console.ReadKey(true);
+            Console.Clear();
+        }
+
         public void CompleteTask(int id)
         {
             // TODO: Implementera logik för att markera som klar
@@ -175,4 +262,4 @@
 }
 
 
-    
+
