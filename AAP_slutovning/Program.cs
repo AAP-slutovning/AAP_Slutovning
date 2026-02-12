@@ -64,7 +64,7 @@ public class TaskManager
     
     public void DeleteTask(int id)
     {
-        var task = task.FirstOrDefault(t => t.Id == id);
+        var task = tasks.FirstOrDefault(t => t.Id == id);
         if (task != null)
         {
             Console.WriteLine($"Ogiltigt id");
@@ -104,7 +104,15 @@ public class TaskManager
                     //TODO: Markera som klar
                         break;
                     case "4": 
-                         
+                         Console.WriteLine("Ange id för att ta bort uppgift:");
+                        if (int.TryParse(Console.ReadLine(), out int deleteId))
+                        {
+                            manager.DeleteTask(deleteId);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt id!");
+                        }
                         break;
                     case "5":
                         running = false;
