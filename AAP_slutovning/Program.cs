@@ -58,9 +58,11 @@
             {
                 Console.WriteLine($"Uppgift {id} är redan markerad som klar.");
             }
-
-            task.IsCompleted = true;
-            Console.WriteLine($"Uppgift {id} är markerad som klar.");
+            else
+            {
+                task.IsCompleted = true;
+                Console.WriteLine($"Uppgift {id} är markerad som klar.");
+            }
 
         }
 
